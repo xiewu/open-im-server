@@ -17,7 +17,6 @@ package group
 import (
 	"context"
 	"fmt"
-	"math"
 	"math/big"
 	"math/rand"
 	"strconv"
@@ -1040,7 +1039,7 @@ func (g *groupServer) deleteMemberAndSetConversationSeq(ctx context.Context, gro
 
 func (g *groupServer) setMemberJoinSeq(ctx context.Context, groupID string, userIDs []string) error {
 	conversationID := msgprocessor.GetConversationIDBySessionType(constant.ReadGroupChatType, groupID)
-	return g.conversationClient.SetConversationMaxSeq(ctx, conversationID, userIDs, math.MaxInt64)
+	return g.conversationClient.SetConversationMaxSeq(ctx, conversationID, userIDs, 0)
 }
 
 func (g *groupServer) SetGroupInfo(ctx context.Context, req *pbgroup.SetGroupInfoReq) (*pbgroup.SetGroupInfoResp, error) {
